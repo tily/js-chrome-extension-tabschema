@@ -1,0 +1,14 @@
+{
+        "name": "TabSchema",
+        "version":"0.0",
+        "description":"send tabs to gigaschema",
+	"background_page": "background.html",
+	"options_page": "options.html",
+        "browser_action": {
+                "default_icon":"icon.png"
+        },  
+        "permissions":[
+		"tabs",
+                "http://gigaschema.appspot.com/"
+        ]   
+}

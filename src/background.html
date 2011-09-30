@@ -1,0 +1,29 @@
+<html>
+<head></head>
+<body>
+<script>
+chrome.browserAction.onClicked.addListener(function(tab) {
+	var opts = ['user', 'schema', 'api_key']
+	for(var i = 0; i < opts.length; i++) {
+		var opt = opts[i]
+		if(!localStorage[opt]) return // open settings
+	}
+        chrome.windows.getAll({populate:true}, function(windowList) {
+		var tabs = [], value = ''
+		for(var i = 0; i < windowList.length; i++) {
+			tabs = tabs.concat(windowList[i].tabs)
+		}
+		value = JSON.stringify(tabs)
+		var xhr = new XMLHttpRequest()
+		var url = ['http://gigaschema.appspot.com', localStorage.user, localStorage.schema].join('/') + '.json'
+		xhr.open("POST", url, true)
+		xhr.onreadystatechange = function() {
+			//alert(xhr.responseText)
+		}
+		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+		xhr.send("value=" + escape(value))
+        })
+})
+</script>
+</body>
+</html>

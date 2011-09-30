@@ -1,0 +1,24 @@
+<html>
+<head></head>
+<script type="text/javascript">
+	function saveOption(e) {
+		localStorage[e.id] = e.value
+	}
+	function restoreOptions() {
+		var opts = ['user', 'schema', 'api_key']
+		for(var i = 0; i < opts.length; i++) {
+			var opt = opts[i]
+			var input = document.getElementById(opt)
+			if(localStorage[opt]) input.value = localStorage[opt]
+		}
+	}
+</script>
+<body onload="restoreOptions()">
+	<p>
+		http://gigaschema.appspot.com/
+		<input type="text" name="user"    id="user"    onkeyup="saveOption(this)" />/ 
+		<input type="text" name="schema"  id="schema"  onkeyup="saveOption(this)" /><br />
+		API Key: <input type="text" name="api_key" id="api_key" onkeyup="saveOption(this)" />
+	</p>
+</body>
+</html>
